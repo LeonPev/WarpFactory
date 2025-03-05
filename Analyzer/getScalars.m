@@ -80,6 +80,16 @@ end
 theta.index = "covariant";
 theta.type = "tensor";
 theta.tensor = cell(4);
+Inputs:
+* `metric`: Metric tensor struct.
+
+Outputs:
+* `expansionScalar`: Expansion scalar.
+* `shearScalar`: Shear scalar.
+* `vorticityScalar`: Vorticity scalar.
+
+Functionality:
+This function calculates scalar quantities (expansion, shear, and vorticity) from the given metric tensor. It performs a 3+1 decomposition of the metric, calculates the four-velocity, and uses these to compute the scalar quantities.
 
 % Define omega tensor
 omega.index = "covariant";

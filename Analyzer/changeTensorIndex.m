@@ -5,6 +5,10 @@ function [outputTensor] = changeTensorIndex(inputTensor, index, metricTensor)
 %   INPUTS:
 %   inputTensor - Tensor struct to change the index of
 %
+This function handles the following index types: 'covariant', 'contravariant', 'mixedupdown', 'mixeddownup'.
+It uses the metric tensor for transformations between covariant and contravariant indices.
+It throws an error if the metric tensor is provided in a mixed index form.
+It also throws an error if an invalid transformation is requested.
 %   index - Index to change the inputTensor to such as 'covariant',
 %   'contravariant', 'mixedupdown', 'mixeddownup'
 %
