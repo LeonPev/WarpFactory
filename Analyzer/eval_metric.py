@@ -1,17 +1,15 @@
 
-def get_energy_tensor(metric, try_gpu):
-    pass  # TODO: Implement
+from Solver.getEnergyTensor import get_energy_tensor
 
-def do_frame_transfer(metric, energy_tensor, frame, try_gpu):
-    pass  # TODO: Implement
 
-def get_energy_conditions(energy_tensor, metric, condition, num_angular_vec, num_time_vec, return_vec, try_gpu):
-    pass  # TODO: Implement
-    return 0, 0, 0
+from .do_frame_transfer import do_frame_transfer
 
-def get_scalars(metric):
-    pass  # TODO: Implement
-    return 0, 0, 0
+
+from .get_energy_conditions import get_energy_conditions
+
+
+from .get_scalars import get_scalars
+
 
 def eval_metric(metric, try_gpu=0, keep_positive=1, num_angular_vec=100, num_time_vec=10):
     output = {}
