@@ -1,15 +1,10 @@
 
-def three_plus_one_decomposer(metric):
-    pass  # TODO: Implement
+from Metrics.threePlusOneDecomposer import three_plus_one_decomposer
+from .do_frame_transfer import change_tensor_index
+from Solver.utils.covDiv import cov_div
+from .c4Inv import c4_inv
 
-def change_tensor_index(metric, index):
-    pass  # TODO: Implement
 
-def cov_div(metric_tensor, c4_inv, u_up_cell, u_down_cell, i, j, factors, try_gpu):
-    pass  # TODO: Implement
-
-def c4_inv(metric_tensor):
-    pass  # TODO: Implement
 
 import numpy as np
 
@@ -50,6 +45,15 @@ def get_scalars(metric):
     theta = {"index": "covariant", "type": "tensor", "tensor": [[0 for _ in range(4)] for _ in range(4)]}
     omega = {"index": "covariant", "type": "tensor", "tensor": [[0 for _ in range(4)] for _ in range(4)]}
 
-    # TODO: Implement remaining calculations for theta, omega, and scalars
+        # Calculate theta and omega tensors
+    for i in range(4):
+        for j in range(4):
+            theta["tensor"][i][j] = 0.5 * (del_u[i][j] + del_u[j][i] - np.einsum('mn...,mi...,nj...->ij...', c4_inv(metric["tensor"]), p_mix[i], p_mix[j]))
+            omega["tensor"][i][j] = 0.5 * (del_u[i][j] - del_u[j][i])
 
-    return 0, 0, 0
+    # Calculate scalars
+    expansion_scalar = np.trace(theta["tensor"])
+    shear_scalar = 0.5 * np.einsum('ij...,ij...', theta["tensor"], theta["tensor"]) - (1/3) * expansion_scalar**2
+    vorticity_scalar = 0.5 * np.einsum('ij...,ij...', omega["tensor"], omega["tensor"])
+
+    return expansion_scalar, shear_scalar, vorticity_scalar
