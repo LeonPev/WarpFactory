@@ -57,6 +57,25 @@ def take_finite_difference_2(A, k1, k2, delta, phiphi_flag=False):
                     )
                 elif kL == 2:
                     sl[kL] = y0
+                    B[tuple(sl)] = 1 / (12**2 * delta[kS] * delta[kL]) * (
+                        -(-(A[tuple([x2 if i == kS else y2 for i in range(4)])] - A[tuple([x_2 if i == kS else y2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y2 for i in range(4)])] - A[tuple([x_1 if i == kS else y2 for i in range(4)])])) +
+                        (-(A[tuple([x2 if i == kS else y_2 for i in range(4)])] - A[tuple([x_2 if i == kS else y_2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y_2 for i in range(4)])] - A[tuple([x_1 if i == kS else y_2 for i in range(4)])])) +
+                        8 * (-(A[tuple([x2 if i == kS else y1 for i in range(4)])] - A[tuple([x_2 if i == kS else y1 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y1 for i in range(4)])] - A[tuple([x_1 if i == kS else y1 for i in range(4)])])) -
+                        8 * (-(A[tuple([x2 if i == kS else y_1 for i in range(4)])] - A[tuple([x_2 if i == kS else y_1 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y_1 for i in range(4)])] - A[tuple([x_1 if i == kS else y_1 for i in range(4)])]))
+                    )
+                elif kL == 3:
+                    sl[kL] = y0
+                    B[tuple(sl)] = 1 / (12**2 * delta[kS] * delta[kL]) * (
+                        -(-(A[tuple([x2 if i == kS else y2 for i in range(4)])] - A[tuple([x_2 if i == kS else y2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y2 for i in range(4)])] - A[tuple([x_1 if i == kS else y2 for i in range(4)])])) +
+                        (-(A[tuple([x2 if i == kS else y_2 for i in range(4)])] - A[tuple([x_2 if i == kS else y_2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y_2 for i in range(4)])] - A[tuple([x_1 if i == kS else y_2 for i in range(4)])])) +
+                        8 * (-(A[tuple([x2 if i == kS else y1 for i in range(4)])] - A[tuple([x_2 if i == kS else y1 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y1 for i in range(4)])] - A[tuple([x_1 if i == kS else y1 for i in range(4)])])) -
+                        8 * (-(A[tuple([x2 if i == kS else y_1 for i in range(4)])] - A[tuple([x_2 if i == kS else y_1 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y_1 for i in range(4)])] - A[tuple([x_1 if i == kS else y_1 for i in range(4)])]))
+                    )
+                # Other cases for kS and kL
+            elif kS == 1:
+                sl[kS] = x0
+                if kL == 2:
+                    sl[kL] = y0
                     B[tuple(sl)] = 1 / (12**2 * delta**2) * (
                         -(-(A[tuple([x2 if i == kS else y2 for i in range(4)])] - A[tuple([x_2 if i == kS else y2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y2 for i in range(4)])] - A[tuple([x_1 if i == kS else y2 for i in range(4)])])) +
                         (-(A[tuple([x2 if i == kS else y_2 for i in range(4)])] - A[tuple([x_2 if i == kS else y_2 for i in range(4)])]) + 8 * (A[tuple([x1 if i == kS else y_2 for i in range(4)])] - A[tuple([x_1 if i == kS else y_2 for i in range(4)])])) +
