@@ -1,3 +1,4 @@
+from datetime import date
 
 def verify_tensor(input_tensor, suppress_msgs=False):
     verified = True
@@ -50,7 +51,7 @@ def verify_tensor(input_tensor, suppress_msgs=False):
         print("Tensor type does not exist. Must be either 'Metric' or 'Stress-Energy'")
         verified = False
 
-    return verified
+    
 
 def _disp_message(msg, suppress_msgs):
     if not suppress_msgs:
@@ -202,7 +203,7 @@ def get_energy_tensor(metric, try_gpu=0, diff_order="fourth"):
         "index": "contravariant",
         "order": diff_order,
         "name": metric["name"],
-        "date": "2024-04-26"  # TODO: Replace with actual date
+        "date": date.today().strftime("%Y-%m-%d")
     }
 
     return energy
