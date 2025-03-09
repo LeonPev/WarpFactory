@@ -10,3 +10,12 @@ def setMinkowski(gridSize):
     metric['tensor'][2, 2, :, :, :, :] = 1
     metric['tensor'][3, 3, :, :, :, :] = 1
     return metric
+
+def c3Inv(gamma):
+    gamma_up = np.zeros_like(gamma)
+    for i in range(gamma.shape[2]):
+        for j in range(gamma.shape[3]):
+            for k in range(gamma.shape[4]):
+                for l in range(gamma.shape[5]):
+                    gamma_up[:, :, i, j, k, l] = np.linalg.inv(gamma[:, :, i, j, k, l])
+    return gamma_up
